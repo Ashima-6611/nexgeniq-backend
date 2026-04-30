@@ -1,0 +1,183 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-purple: #9b5de5;
+  --color-brand-blue: #3a86ff;
+  --color-brand-cyan: #64c8ff;
+  --color-brand-dark: #0a0a2e;
+  --color-brand-deep: #0d1b4b;
+
+  --animate-glow: glow 2s ease-in-out infinite alternate;
+  --animate-orbit: orbit 20s linear infinite;
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes glow {
+    from { box-shadow: 0 0 5px #64c8ff, 0 0 10px #64c8ff; }
+    to { box-shadow: 0 0 20px #3a86ff, 0 0 40px #3a86ff; }
+  }
+  @keyframes orbit {
+    from { transform: rotate(0deg) translateX(150px) rotate(0deg); }
+    to { transform: rotate(360deg) translateX(150px) rotate(-360deg); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+}
+
+:root {
+  --brand-purple: #9b5de5;
+  --brand-blue: #3a86ff;
+  --brand-cyan: #64c8ff;
+  --brand-dark: #0a0a2e;
+  --brand-deep: #0d1b4b;
+}
+
+body {
+  margin: 0;
+  background-color: var(--brand-dark);
+  color: white;
+  font-family: 'Inter', 'Poppins', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom UI Components - Premium SaaS Design System */
+.glass {
+  background-color: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+.glass-card {
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 1.5rem;
+  padding: 2.5rem;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.05), 
+              0 20px 40px -10px rgba(0, 0, 0, 0.5);
+  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Neon top border effect on hover */
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--brand-purple), var(--brand-blue), var(--brand-cyan));
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 2;
+}
+
+.glass-card:hover {
+  background-color: rgba(255, 255, 255, 0.04);
+  border-color: rgba(100, 200, 255, 0.2);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
+              0 20px 40px -10px rgba(0, 0, 0, 0.6),
+              0 0 50px -15px rgba(100, 200, 255, 0.3);
+  transform: translateY(-6px) scale(1.01);
+}
+
+.glass-card:hover::before {
+  opacity: 1;
+}
+
+.glow-text {
+  text-shadow: 0 0 15px rgba(100, 200, 255, 0.4), 0 0 30px rgba(58, 134, 255, 0.2);
+}
+
+.neon-border {
+  position: relative;
+  border-radius: inherit;
+  background: padding-box var(--brand-dark), 
+              border-box linear-gradient(to right, var(--brand-purple), var(--brand-cyan));
+  border: 1px solid transparent;
+}
+
+.btn-primary {
+  position: relative;
+  background: linear-gradient(135deg, var(--brand-purple), var(--brand-blue));
+  color: white;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 1rem 2.5rem;
+  border-radius: 9999px;
+  box-shadow: 0 10px 25px -5px rgba(155, 93, 229, 0.4);
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--brand-blue), var(--brand-cyan));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 15px 35px -5px rgba(100, 200, 255, 0.5);
+  transform: translateY(-3px);
+}
+
+.btn-primary:hover::after {
+  opacity: 1;
+}
+
+.btn-secondary {
+  border: 2px solid rgba(100, 200, 255, 0.5);
+  color: var(--brand-cyan);
+  font-weight: 600;
+  padding: 1rem 2.5rem;
+  border-radius: 9999px;
+  background: rgba(10, 10, 46, 0.5);
+  backdrop-filter: blur(8px);
+  transition: all 0.4s ease;
+  cursor: pointer;
+  box-shadow: 0 0 0 transparent;
+}
+
+.btn-secondary:hover {
+  background-color: rgba(100, 200, 255, 0.1);
+  border-color: var(--brand-cyan);
+  color: #fff;
+  box-shadow: 0 0 20px rgba(100, 200, 255, 0.2);
+}
+
+/* Custom Neural Grid Background */
+.neural-overlay {
+  background-image: radial-gradient(circle at 50% 50%, rgba(58, 134, 255, 0.15) 0%, transparent 70%),
+                    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 100% 100%, 60px 60px, 60px 60px;
+}
+
+/* Orbit Animation Styles */
+.orbit-container {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Scroll Smoothing */
+html {
+  scroll-behavior: smooth;
+}
